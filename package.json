@@ -1,0 +1,26 @@
+{
+  "name": "tracking-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server/src/app.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server/src/server.js",
+    "develop": "concurrently \"cd server && npm run watch\" \"cd client && npm start\"",
+    "install": "cd server && npm i && cd ../client && npm i",
+    "build": "cd client && npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JulioRios15/Tracking-App.git"
+  },
+  "author": "Julio Rios",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JulioRios15/Tracking-App/issues"
+  },
+  "homepage": "https://github.com/JulioRios15/Tracking-App#readme",
+  "dependencies": {
+    "concurrently": "^7.0.0"
+  }
+}
