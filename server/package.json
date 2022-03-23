@@ -10,6 +10,7 @@
   "author": "Julio Rios",
   "license": "ISC",
   "dependencies": {
+    "@typegoose/typegoose": "^9.7.1",
     "compression": "^1.7.4",
     "config": "^3.3.7",
     "cors": "^2.8.5",
