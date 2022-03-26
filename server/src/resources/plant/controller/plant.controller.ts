@@ -59,7 +59,7 @@ export async function updatePlantHandler(
 }
 
 export async function deletePlantHandler(
-    req: Request<DeletePlantInput>, 
+    req: Request, 
     res: Response, 
     next: NextFunction
 ){
