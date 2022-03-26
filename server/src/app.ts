@@ -14,6 +14,7 @@ import errorHandler from "./common/middlewares/errorHandler";
 //Routes
 import RoutesConfig from "./common/routes/routes.config";
 import PlantRoutes from './resources/plant/plant.routes.config';
+import UserRoutes from './resources/user/user.routes.config';
 
 // Core App
 const app: express.Application = express();
@@ -33,6 +34,7 @@ app.use(compression());
 
 // Routes Config
 appRoutes.push(new PlantRoutes(app));
+appRoutes.push(new UserRoutes(app));
 
 //Error handler
 app.use(errorHandler);
