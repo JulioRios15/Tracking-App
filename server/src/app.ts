@@ -5,6 +5,7 @@ import config from 'config';
 import helmet from 'helmet';
 import cors from 'cors';
 import compression from 'compression';
+import connectToDatabase from "./utils/connection";
 import logger from './utils/logger';
 
 // Core App
@@ -24,4 +25,7 @@ app.use(compression());
 
 server.listen(port, async () => {
     logger.info(`server started at: http://localhost:${port}`); 
+
+    //Connect to mongo database
+    await connectToDatabase();
 });

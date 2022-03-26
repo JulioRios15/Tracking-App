@@ -2,16 +2,27 @@ import mongoose from "mongoose";
 import config from "config";
 import logger from "./logger";
 
-async function connectToMongo() {
-  const dbUrl = config.get<string>("dbUrl");
+export default async function connectToDatabase() {
+  const dbUri = config.get<string>("dbUri");
 
   try {
-    await mongoose.connect(dbUrl);
-    logger.info(`Connected to mongo: ${dbUrl}`);
-  } catch (error) {
-    logger.error(`Could not connect to mongo: ${dbUrl}`);
+    const connection = await mongoose.connect(dbUri);
+    logger.info(`Connected to Mongo: ${dbUri}`);
+    return connection;
+  } catch (e) {
+    logger.error(`Could not connect to Mongo: ${dbUri}`);
     process.exit(1);
   }
 }
 
-export default connectToMongo;
+export async function dropDatabase(){
+    const dbUri = config.get<string>("dbUrl");
+
+    try {
+      await (await connectToDatabase()).connection.dropDatabase();
+      logger.info(`database Dropped: ${dbUri}`);
+    } catch (error) {
+      logger.error(`Could not drop MongoDB: ${dbUri}`);
+      process.exit(1);
+    }
+}
