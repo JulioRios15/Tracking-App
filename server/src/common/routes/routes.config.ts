@@ -1,6 +1,6 @@
 import express, {Request, Response} from 'express';
 
-export abstract class RoutesConfig {
+export default abstract class RoutesConfig {
     app: express.Application;
     name: string;
 
