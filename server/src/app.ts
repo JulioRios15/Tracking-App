@@ -10,11 +10,13 @@ import logger from './utils/logger';
 
 //Middleware
 import errorHandler from "./common/middlewares/errorHandler";
+import deserializeUser from "./common/middlewares/deserializeUser";
 
 //Routes
 import RoutesConfig from "./common/routes/routes.config";
 import PlantRoutes from './resources/plant/plant.routes.config';
 import UserRoutes from './resources/user/user.routes.config';
+import SessionRoutes from './resources/session/session.routes.config';
 
 // Core App
 const app: express.Application = express();
@@ -31,10 +33,12 @@ app.use(cors({
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(compression());
+app.use(deserializeUser);
 
 // Routes Config
 appRoutes.push(new PlantRoutes(app));
 appRoutes.push(new UserRoutes(app));
+appRoutes.push(new SessionRoutes(app));
 
 //Error handler
 app.use(errorHandler);
