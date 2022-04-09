@@ -17,6 +17,7 @@ import RoutesConfig from "./common/routes/routes.config";
 import PlantRoutes from './resources/plant/plant.routes.config';
 import UserRoutes from './resources/user/user.routes.config';
 import SessionRoutes from './resources/session/session.routes.config';
+import ProjectRoutes from './resources/project/project.routes.config';
 
 // Core App
 const app: express.Application = express();
@@ -39,6 +40,7 @@ app.use(deserializeUser);
 appRoutes.push(new PlantRoutes(app));
 appRoutes.push(new UserRoutes(app));
 appRoutes.push(new SessionRoutes(app));
+appRoutes.push(new ProjectRoutes(app));
 
 //Error handler
 app.use(errorHandler);
