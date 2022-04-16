@@ -1,6 +1,9 @@
 import express, {Request, Response} from 'express';
 import RoutesConfig from "../../common/routes/routes.config";
 import * as materialController from './controller/material.controller';
+import upload from '../../common/middlewares/multer';
+import validateMaterialFile from './middlewares/validateMaterialFile';
+import configureUploadMaterialOptions from './middlewares/configureUploadMaterialOptions';
 
 
 export default class ProjectRoutes extends RoutesConfig {
@@ -58,6 +61,15 @@ export default class ProjectRoutes extends RoutesConfig {
         this.app.put(
             `${endpoint}/materialId/:materialId`,
             materialController.updateMaterialHandler
+        );
+
+        // Upload Material
+        this.app.post(
+            `${endpoint}/upload`,
+            upload.single('file'),
+            validateMaterialFile,
+            configureUploadMaterialOptions,
+            materialController.uploadMaterialHandler
         );
 
         return this.app;
