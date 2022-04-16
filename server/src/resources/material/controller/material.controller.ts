@@ -117,7 +117,14 @@ export async function uploadMaterialHandler(
                 project: materialToFind.project
             });
 
-            if(queryMaterials && queryMaterials.length === 1 && queryMaterials[0].awb === "" && materialToFind.awb !== undefined){
+            // update material if awb has changed
+            if(
+                queryMaterials 
+                && queryMaterials.length === 1 
+                && queryMaterials[0].awb === "" 
+                && materialToFind.awb !== undefined
+                && queryMaterials[0].awb !== materialToFind.awb
+            ){
                 const updatedMaterial = await materialService.updateMaterial(queryMaterials[0]._id, {awb: materialToFind.awb});
                 updatedMaterials.push(updatedMaterial);
                 updatedMaterialsCount++;
